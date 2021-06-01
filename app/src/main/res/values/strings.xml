@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">DailyInspiration</string>
+    <string name="display_quote">You are the master of your judgements, your decisions, and your actions.</string>
 </resources>

@@ -4,15 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@color/black">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alpha=".25"
+        android:scaleType="centerCrop"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/gundam_1010971" />
 
     <TextView
-        android:layout_width="200dp"
-        android:layout_height="48dp"
+        android:layout_width="290dp"
+        android:layout_height="89dp"
         android:layout_marginStart="106dp"
         android:layout_marginEnd="106dp"
-        android:color="#FF0000"
-        android:text="You are the master of your judgements, your decisions, and your actions."
+        android:text="@string/display_quote"
+        android:textColor="@color/teal_200"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
