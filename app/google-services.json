@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "156638483982",
+    "project_id": "dailyinspiration-7cca9",
+    "storage_bucket": "dailyinspiration-7cca9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:156638483982:android:6ef9915db6949d97d94e5f",
+        "android_client_info": {
+          "package_name": "com.codingfanatic.dailyinspiration.com"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "156638483982-hc574ru5sdhjfeu5nq698ocsek3nrmjo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUf4SbjaMSMwa7nV7FFPcUcMR_9Rk8le8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "156638483982-hc574ru5sdhjfeu5nq698ocsek3nrmjo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

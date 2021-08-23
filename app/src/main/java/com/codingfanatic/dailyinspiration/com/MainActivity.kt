@@ -20,18 +20,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        basicReadWrite()
+        writeQuote()
+        readQuote()
     }
-    fun basicReadWrite() {
-        // Use this string as the message column reference
-        // in the Realtime Database
-        val messageColumnInFirebase = "message3goaskeeeew"
-
-        //START WRITING MESSAGE TO DB
-        //Writing to your database.
+    fun readQuote() {
+        val messageColumnInFirebase = "quoteToBeDisplayed"
         val database = Firebase.database //Create a Firebase object variable
         val myRef = database.getReference(messageColumnInFirebase)
-
+        val randomStringHere = ""
+        
         // Read from the database
         myRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -47,12 +44,14 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        myRef.removeValue()
-        myRef.setValue("KILL ME", 3)
-        myRef.setValue("KILL ME...sike nah jk", 1)
-        //END WRITING TO DB
+    }
 
-
-
+    fun writeQuote() {
+        val messageColumnInFirebase = "quoteToBeDisplayed"
+        //START WRITING MESSAGE TO DB
+        //Writing to your database.
+        val database = Firebase.database //Create a Firebase object variable
+        val myRef = database.getReference(messageColumnInFirebase)
+        myRef.setValue("You are the master of your judgements, your decisions, and your actions.")
     }
 }
