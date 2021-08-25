@@ -3,6 +3,7 @@ package com.codingfanatic.dailyinspiration.com
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.TextView
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -20,30 +21,36 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        writeQuote()
-        readQuote()
+       // writeQuote()
+        //In main, set the value of the TextView to the content of the variable
+        val quoteTextView = findViewById<TextView>(R.id.quoteTextView) as TextView
+        quoteTextView.setText(readQuote())
     }
-    fun readQuote() {
+
+    //Return a String. Namely, the value in firebase
+    fun readQuote(): String {
+
         val messageColumnInFirebase = "quoteToBeDisplayed"
         val database = Firebase.database //Create a Firebase object variable
         val myRef = database.getReference(messageColumnInFirebase)
+        //ARGH KEEPS RETURNING THIS VALUE INSTEAD OF REALTIME DATABASE VALUE
         val randomStringHere = ""
-        
+
         // Read from the database
         myRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                val value = dataSnapshot.getValue<String>()
-                Log.d(TAG, "Value is: $value")
+                val randomStringHere = dataSnapshot.getValue<String>()
+                Log.d(TAG, "Value is: $randomStringHere")
             }
-
             override fun onCancelled(error: DatabaseError) {
                 // Failed to read value
                 Log.w(TAG, "Failed to read value.", error.toException())
             }
         })
-
+        Log.d(TAG, "Value is: $randomStringHere")
+        return randomStringHere
     }
 
     fun writeQuote() {
