@@ -1,16 +1,18 @@
 package com.codingfanatic.dailyinspiration.com
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
-import java.time.DayOfWeek
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.ktx.Firebase
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
+import com.google.firebase.ktx.Firebase
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,19 +25,31 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
          readQuote()
-         //writeQuote()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        setContentView(R.layout.activity_main)
-        readQuote()
     }
 
     //Read a String from the Realtime Database and use it as the TextView
     fun readQuote() {
-        val randomQuote = (0..6).random()
-        val messageColumnInFirebase = "quoteToBeDisplayed" + "$randomQuote"
+
+        //Get the day of the week
+        val dateFormat: DateFormat = SimpleDateFormat("EEEE")
+        val today = dateFormat.format(Date()).toUpperCase()
+        Log.d(TAG, today)
+
+        //Get the number for the day of the week
+        val dayNumber = when (today) {
+            "SUNDAY" -> "0"
+            "MONDAY" -> "1"
+            "TUESDAY" -> "2"
+            "WEDNESDAY" -> "3"
+            "THURSDAY" -> "4"
+            "FRIDAY" -> "5"
+            "SATURDAY" -> "6"
+            else -> ""
+        }
+
+        //Create the String for fetching the Realtime Database row
+        val messageColumnInFirebase = "quoteToBeDisplayed" + "$dayNumber"
+
         val database = Firebase.database //Create a Firebase object variable
         val myRef = database.getReference(messageColumnInFirebase)
         val quoteTextView = findViewById<TextView>(R.id.quoteTextView) as TextView
@@ -55,15 +69,4 @@ class MainActivity : AppCompatActivity() {
             }
         })
     }
-/*
-    //Write a new quote to the Realtime Datatbase
-    fun writeQuote() {
-        val messageColumnInFirebase = "quoteToBeDisplayed"
-        //START WRITING MESSAGE TO DB
-        //Writing to your database.
-        val database = Firebase.database //Create a Firebase object variable
-        val myRef = database.getReference(messageColumnInFirebase)
-        myRef.setValue("You are the master of your judgements, your decisions, and your actions.")
-    }
-            */
 }
